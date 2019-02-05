@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://omgvamp-hearthstone-v1.p.mashape.com/',
+  apiKey: 'FYpf2jeo0ImshxeJdV42XjOqdaDlp1F7tIsjsnkre1O5ZOzPb5'
 };
 
 /*

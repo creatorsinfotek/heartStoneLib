@@ -1,0 +1,26 @@
+<ion-header>
+        <ion-toolbar>
+          <ion-title>{{card?.name}}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content padding *ngIf="card && card.cardId">
+        <ion-card>
+            <img [src]="card.img" (error)="updateImage($event)">
+            <ion-card-content>
+                <ion-card-title>
+                    {{card?.name}}
+                </ion-card-title>
+                <p>{{card?.text}}</p>
+                <p>{{card?.flavor}}</p>
+                <ion-card-title>
+                    Stats
+                </ion-card-title>
+                <p *ngIf="card.health"><span> Health: </span> {{card.health}}</p>
+                <p *ngIf="card.attack"><span> Attack: </span> {{card.attack}}</p>
+                <p *ngIf="card.faction"><span> Faction: </span> {{card.faction}}</p>
+                <p *ngIf="card.rarity"><span> Rarity: </span> {{card.rarity}}</p>
+                <p *ngIf="card.type"><span> Type: </span> {{card.type}}</p>
+            </ion-card-content>
+        </ion-card>  
+      </ion-content>
+      
