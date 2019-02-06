@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{cardDeckGroup}}</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
@@ -15,7 +18,7 @@
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <div>{{card.text}}</div>
+        <div [innerHTML]= "card.text"></div>
         <ion-button size='medium' expand='full' [routerLink]="['/tabs/card/'+ card.cardId]" >
           See Detail
         </ion-button>

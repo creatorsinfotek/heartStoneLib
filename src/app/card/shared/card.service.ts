@@ -36,6 +36,8 @@ getAllCardDecks(): Observable<CardDeck[]> {
   return this.http.get<Card[]>(this.baseUrl + '/cards/' + cardId, {headers: this.headers});
  }
 
-
+ replaceCardText(text: string) {
+   return  text = text ? text.replace(new RegExp('\\\\n', 'g'), ',') : 'No Description';
+ }
 
 }
