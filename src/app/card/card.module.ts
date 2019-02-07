@@ -26,6 +26,7 @@ import { CardStuffPage } from './card-stuff/card-stuff.page';
   providers: [
     CardService
   ],
-  declarations: [CardPage, CardDetailPage, CardListComponent, CardListingPage, CardStuffPage]
+  declarations: [
+    CardPage, CardDetailPage, CardListComponent, CardListingPage, CardStuffPage]
 })
 export class CardPageModule {}

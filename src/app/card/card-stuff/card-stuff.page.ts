@@ -16,9 +16,11 @@ export class CardStuffPage {
 
   ionViewWillEnter() {
     this.cardId = this.route.snapshot.paramMap.get('cardId');
+    console.log(this.cardId);
     this.loaderService.presentLoading();
     this.cardService.getCardsById(this.cardId).subscribe(
       (cards: Card[]) => {
+        console.log(cards.length);
         // this.card = cards[0];
         this.card = cards.map( (card: Card) => {
             // card.text = card.text ? card.text.replace(new RegExp('////n', 'g'), ' ') : 'No Description';
