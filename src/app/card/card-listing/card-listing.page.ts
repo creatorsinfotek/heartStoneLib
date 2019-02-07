@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../shared/card.service';
 import { Card } from '../shared/card.model';
 import { LoaderService } from 'src/app/shared/service/loader.service';
+import { ToastService } from 'src/app/shared/service/toast.service';
 
 @Component({
   selector: 'app-card-listing',
@@ -16,14 +17,10 @@ export class CardListingPage {
   cards: Card[] = [];
 
   constructor(private route: ActivatedRoute, private cardService: CardService,
-    private loaderService: LoaderService) { }
+    private loaderService: LoaderService, private toaster: ToastService) { }
 
-  async ionViewWillEnter() {
-    this.cardDeckGroup = this.route.snapshot.paramMap.get('cardDeckGroup');
-    this.cardDeck = this.route.snapshot.paramMap.get('cardDeck');
-
+  getCards() {
     this.loaderService.presentLoading();
-
     this.cardService.getCardsByDecks(this.cardDeckGroup, this.cardDeck).subscribe(
       (cards: Card[]) => {
         // this.cards = cards;
@@ -33,6 +30,21 @@ export class CardListingPage {
           return card;
         });
         this.loaderService.dismissLoading();
+      }, () => {
+        this.toaster.presentErrorToast('cards could not be loaded. Plz try agian');
+        this.loaderService.dismissLoading();
       });
+  }
+
+  async ionViewWillEnter() {
+    this.cardDeckGroup = this.route.snapshot.paramMap.get('cardDeckGroup');
+    this.cardDeck = this.route.snapshot.paramMap.get('cardDeck');
+    // tslint:disable-next-line:curly
+    if (this.cards && this.cards.length === 0 ) this.getCards();
+  }
+
+  doRefresh (event) {
+    this.getCards();
+    event.target.complete();
   }
 }
